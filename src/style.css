@@ -5,6 +5,8 @@ body {
   background: #fff8f5; 
   color: #482d36; 
   font-family: 'DM Sans', sans-serif; 
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   overflow-x: hidden; 
 }
 main { 
@@ -857,19 +859,21 @@ footer span { display: block; font: 11px 'DM Sans', sans-serif; letter-spacing: 
 }
 
 @media(max-width: 760px) {
-  .music-players { top: 12px; right: 12px; gap: 6px; }
+  .music-players { position: absolute; top: 12px; right: 12px; gap: 6px; }
   .play-btn { min-width: 0; padding: 8px 10px; gap: 6px; }
   .play-btn svg { width: 16px; height: 16px; }
   .song-label strong { font-size: 10px; }
   .song-label small { font-size: 8px; }
-  .hero { grid-template-columns: 1fr; padding: 95px 24px 65px; gap: 30px; text-align: center; }
-  .couple-signature { top: 20px; font-size: 32px; }
+  .hero { grid-template-columns: 1fr; padding: 122px 22px 65px; gap: 30px; text-align: center; }
+  .couple-signature { top: 57px; font-size: 30px; }
   .portrait-container { width: 78%; max-width: 330px; }
+  .portrait-container,
+  .hero-copy { opacity: 1 !important; transform: none !important; }
   .portrait-note { left: -18px; bottom: 30px; padding: 10px 14px; }
   .portrait-stamp { top: 26px; right: -21px; width: 65px; height: 65px; }
   .portrait-caption { right: 0; bottom: -25px; font-size: 10px; }
   .hero-copy { text-align: center; }
-  .romantic-title { font-size: 76px; margin: 18px 0; }
+  .romantic-title { font-size: clamp(54px, 14.5vw, 66px); line-height: .98; margin: 18px 0; }
   .hero-sub { font-size: 16px; }
   .scroll { margin-top: 10px; }
   .section { padding: 85px 22px; }
@@ -910,16 +914,27 @@ footer span { display: block; font: 11px 'DM Sans', sans-serif; letter-spacing: 
   .proposal-card { padding: 45px 22px 36px; }
   .proposal-actions { gap: 12px; }
   .proposal-actions button { min-height: 45px; font-size: 13px; }
-  .teddy-companion { scale: .62; transform-origin: bottom center; }
-  .teddy-speech { right: 62px; bottom: 74px; }
+  .teddy-companion { scale: .3; transform-origin: bottom center; }
+  .teddy-speech { display: none; }
+  .teddy-yes .teddy-speech,
+  .teddy-no .teddy-speech,
+  .teddy-affection .teddy-speech,
+  .teddy-carries-no .teddy-speech { display: block; right: 66px; bottom: 70px; }
 }
 
 @media(max-width: 420px) {
-  .music-players { top: 9px; right: 9px; gap: 5px; }
+  .music-players {
+    position: absolute;
+    top: max(9px, env(safe-area-inset-top));
+    right: max(9px, env(safe-area-inset-right));
+    gap: 5px;
+  }
   .play-btn { padding: 7px 8px; gap: 5px; }
   .play-btn svg { width: 14px; height: 14px; }
   .song-label strong { font-size: 9px; }
   .song-label small { font-size: 7px; }
+  .hero { padding-top: max(122px, calc(116px + env(safe-area-inset-top))); }
+  .couple-signature { top: max(57px, calc(52px + env(safe-area-inset-top))); }
   .portrait-container { width: 82%; max-width: 320px; }
   .story-spread { gap: 9px; }
   .story-photo { width: min(100%, 165px); }
